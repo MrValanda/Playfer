@@ -7,8 +7,7 @@ namespace ShifrPleyfera
     {
         static void Main(string[] args)
         {
-            //Один товарищ сказал:" Мне, пожалуйста, два сметанника и три чая"
-            //параллелограмм
+          
             int itemMenu;
             do
             {
@@ -90,7 +89,6 @@ namespace ShifrPleyfera
                         break;
                 }
             } while (itemMenu!=3);
-            // Console.WriteLine(DecryptText(text,key,str));
         }
 
         static string EncryptText(string text,string tempStr)
@@ -112,34 +110,22 @@ namespace ShifrPleyfera
             {
                 var firstElementIndexs = FindIndexs(encryptTable,text[i]);
                 var secondElementIndexs = FindIndexs(encryptTable,text[i+1]);
-                if (firstElementIndexs.Item2 != secondElementIndexs.Item2) // если не в одном столбце 
+                if (firstElementIndexs.Item2 != secondElementIndexs.Item2)
                 {
-                    // ОС = СЫ
-                    //АБВГ
-                    //РОСЫ
-                    //ЯЧМИ
-                    if (firstElementIndexs.Item1 == secondElementIndexs.Item1) // если находятся в 1 строке 
+                    if (firstElementIndexs.Item1 == secondElementIndexs.Item1) 
                         encryptText +=encryptTable[Mod(firstElementIndexs.Item1,encryptTable.GetLength(0)), Mod(firstElementIndexs.Item2 + 1,encryptTable.GetLength(1))].ToString() +
                                       encryptTable[Mod(secondElementIndexs.Item1,encryptTable.GetLength(0)),Mod(secondElementIndexs.Item2 + 1,encryptTable.GetLength(1))].ToString();
                             
-                    else//Прямоугольник
+                    else
                     {
-                        // ЯГ = АИ
-                        //АБВГ
-                        //РОСЫ
-                        //ЯЧМИ
                         encryptText +=
                             encryptTable[Mod(firstElementIndexs.Item1, encryptTable.GetLength(0)), Mod(secondElementIndexs.Item2, encryptTable.GetLength(1))]
                                 .ToString() + encryptTable[Mod(secondElementIndexs.Item1, encryptTable.GetLength(0)),
                                 Mod(firstElementIndexs.Item2, encryptTable.GetLength(1))].ToString();
                     }
                 }
-                else//находятся в 1 столбце 
+                else
                 {
-                    // БО = ОЧ
-                    //АБВГ
-                    //РОСЫ
-                    //ЯЧМИ
                     encryptText +=
                         encryptTable[Mod(firstElementIndexs.Item1 + 1, encryptTable.GetLength(0)), Mod(firstElementIndexs.Item2, encryptTable.GetLength(1))].ToString() +
                         encryptTable[Mod(secondElementIndexs.Item1 + 1, encryptTable.GetLength(0)), Mod(secondElementIndexs.Item2, encryptTable.GetLength(1))].ToString();
@@ -168,9 +154,9 @@ namespace ShifrPleyfera
             {
                 var firstElementIndexs = FindIndexs(decryptTable, text[i]);
                 var secondElementIndexs = FindIndexs(decryptTable, text[i + 1]);
-                if (firstElementIndexs.Item2 != secondElementIndexs.Item2) // если не в одном столбце 
+                if (firstElementIndexs.Item2 != secondElementIndexs.Item2)
                 {
-                    if (firstElementIndexs.Item1 == secondElementIndexs.Item1) // если находятся в 1 строке 
+                    if (firstElementIndexs.Item1 == secondElementIndexs.Item1)
                         decryptText +=
                             decryptTable[Mod(firstElementIndexs.Item1, decryptTable.GetLength(0)), Mod(firstElementIndexs.Item2 - 1, decryptTable.GetLength(1))]
                                 .ToString() +
